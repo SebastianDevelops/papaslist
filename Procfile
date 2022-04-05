@@ -1,0 +1,1 @@
+web: gunicorn papaslist.wsgi --log-file -
