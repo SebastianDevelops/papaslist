@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import django_heroku
 from pathlib import Path
 
 
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2gihqz%_jz037z9%4)jych7=p@7!gtf@&&^t=xz*(tg6_i=_b2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["papaslist.herokuapp.com", "127.0.0.1"]
 
@@ -80,8 +81,12 @@ WSGI_APPLICATION = 'papaslist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd55j1qggr29krd',
+        'USER': 'lkadetydmzhuua',
+        'PASSWORD': '16e7386c2d702212613580b1949ff4c69af111b766f001b5ebf77aa68c75f9d9',
+        'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -120,8 +125,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
